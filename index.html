@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pet Starter</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="w3-light-grey">
+	<!-- w3-content defines a container for fixed size centered content, 
+	and is wrapped around the whole page content, except for the footer in this example -->
+	<div class="w3-content" style="max-width:1400px">
+	
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32"> 
+		<h1><b>Welcome to PetStarter!</b></h1>
+		<p>What kind of pet are you looking for today? <button class="buttons" id="dogBtn">Dog</button> or <button class="buttons" id="catBtn">Cat</button></p>
+	</header>
+	
+	<!-- Grid -->
+	<div class="w3-row">
+	
+	<!-- Animal entries -->
+	<div class="w3-col l8 s12">
+		<!-- Animal entry -->
+		<div class="w3-card-4 w3-margin">
+			<!-- picture of animal -->
+			<img src="" alt="animal" style="width:100%">
+			<div class="w3-container">
+				<h3><b>Animal HEADING</b></h3>
+				<h5>Title description, <span class="w3-opacity">April 7, 2014</span></h5>
+			</div>
+		
+			<div class="w3-container">
+				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
+				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+				<div class="w3-row">
+					<div class="w3-col m8 s12">
+						<p><button class="w3-button w3-padding-large w3-border"><b>READ MORE »</b></button></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+	
+		<!-- Animal entry -->
+		<div class="w3-card-4 w3-margin">
+			<!-- picture of animal -->
+			<img src="" alt="animal" style="width:100%">
+			<div class="w3-container">
+				<h3><b>Animal ENTRY</b></h3>
+				<h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
+			</div>
+		
+			<div class="w3-container">
+				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
+				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+				<div class="w3-row">
+					<div class="w3-col m8 s12">
+						<p><button class="w3-button w3-padding-large w3-border"><b>READ MORE »</b></button></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- END ANIMAL ENTRIES -->
+	</div>
+	
+	<!-- Introduction about dog or cat -->
+	<div class="w3-col l4">
+		<!-- About breed -->
+		<div class="w3-card w3-margin w3-margin-top">
+			<div class="w3-container w3-white">
+				<h4><b>Breed Name</b></h4>
+				<p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+			</div>
+		</div><hr>
+		
+		<!-- Posts -->
+		<div class="w3-card w3-margin">
+			<div class="w3-container w3-padding">
+				<h4>Popular items to get for this animal</h4>
+			</div>
+			<ul class="w3-ul w3-hoverable w3-white">
+				<li class="w3-padding-16">
+					<!-- Picture of supplies in each image tag -->
+					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+					<span class="w3-large">Lorem</span><br>
+					<span>Sed mattis nunc</span>
+				</li>
+				<li class="w3-padding-16">
+					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+					<span class="w3-large">Ipsum</span><br>
+					<span>Praes tinci sed</span>
+				</li> 
+				<li class="w3-padding-16">
+					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+					<span class="w3-large">Dorum</span><br>
+					<span>Ultricies congue</span>
+				</li>   
+				<li class="w3-padding-16 w3-hide-medium w3-hide-small">
+					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+					<span class="w3-large">Mingsum</span><br>
+					<span>Lorem ipsum dipsum</span>
+				</li>  
+			</ul>
+		</div>
+		<hr> 
+
+	<!-- END Introduction Menu -->
+	</div>
+	
+	<!-- END GRID -->
+	</div><br>
+	
+	<!-- END w3-content -->
+	</div>
+	
+	<!-- Footer -->
+	<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+		<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+	</footer>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/JavaScript">
+
+//Amazon
+
+var amazonURL = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://amazon-product-search.p.rapidapi.com/amazon-search/product.php?asin=B081Q5RCMV&region=com",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "amazon-product-search.p.rapidapi.com",
+		"x-rapidapi-key": "21acf3ee9cmsh43ea2bb31469b34p1aac81jsn732637b64531"
+	}
+}
+
+$.ajax(amazonURL).done(function (response) {
+	console.log(response);
+});
+
+// need a way to take user input and search amazon for products
+
+//Petfinder
+
+//test
+
+let clickedDog = document.getElementByID("")
+object.addEventListener("click", myScript);
+
+let userAnimal = {
+    species: "dog"
+}
+
+var body = {
+    grant_type: 'client_credentials',
+    client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
+    client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
+};
+
+$.ajax({
+    url: 'https://api.petfinder.com/v2/oauth2/token',
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    /* data: JSON.stringify(body), /* wrong */
+    data: body, /* right */
+    complete: function(result) {
+        //called when complete
+        console.log(result, "complete");
+    },
+
+    success: function(result) {
+        //called when successful
+		//console.log(result, "success");
+		let accessToken = "Bearer " + result.access_token;
+		//console.log(accessToken);
+		$.ajax({
+   			url: 'https://api.petfinder.com/v2/animals',
+   			type: 'GET',
+   			contentType: 'application/json',
+   			headers: {
+	  			Authorization: accessToken
+   			},
+   			success: function (result) {
+	   			console.log(result);
+                console.log(result.animals[0].name);
+                console.log(result.animals[0].type);
+                console.log(result.animals[0].breeds.primary);
+                console.log(result.animals[0].age);
+			   	// CallBack(result);
+
+   			},
+   			error: function (error) {
+
+  			 }
+		});
+    },
+
+    error: function(result) {
+        //called when there is an error
+        console.log(result, "error");
+    },
+});
+
+</script>
+
+</html>
