@@ -6,3 +6,7 @@
 .buttons {
     background-color: wheat;
 }
+
+#hide {
+    visibility: hidden;
+}
