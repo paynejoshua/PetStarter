@@ -13,10 +13,14 @@
 
 <script type="text/JavaScript">
 
+<<<<<<< HEAD
 // change "dog" to match value of animal button clicked when that is added to html
 let searchKey = "dog" + " food collar toy bed"
 
 let amazonURL = `https://amazon-product-search.p.rapidapi.com/amazon-search/search.php?search=${searchKey}&region=com&page=1`
+=======
+//Amazon
+>>>>>>> 4453e91f82d0e965a30e39145e37ad62763f8140
 
 $.ajax({
     url: amazonURL,
@@ -45,6 +49,102 @@ $.ajax({
 
 
 // need a way to take user input and search amazon for products
+
+//Petfinder
+
+//test
+
+let clickedDog = document.getElementByID("")
+object.addEventListener("click", myScript);
+
+let userAnimal = {
+    species: "dog"
+}
+
+var body = {
+    grant_type: 'client_credentials',
+    client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
+    client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
+};
+
+$.ajax({
+    url: 'https://api.petfinder.com/v2/oauth2/token',
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    /* data: JSON.stringify(body), /* wrong */
+    data: body, /* right */
+    complete: function(result) {
+        //called when complete
+        console.log(result, "complete");
+    },
+
+    success: function(result) {
+        //called when successful
+		//console.log(result, "success");
+		let accessToken = "Bearer " + result.access_token;
+		//console.log(accessToken);
+		$.ajax({
+   			url: 'https://api.petfinder.com/v2/animals',
+   			type: 'GET',
+   			contentType: 'application/json',
+   			headers: {
+	  			Authorization: accessToken
+   			},
+   			success: function (result) {
+	   			console.log(result);
+                console.log(result.animals[0].name);
+                console.log(result.animals[0].type);
+                console.log(result.animals[0].breeds.primary);
+                console.log(result.animals[0].age);
+			   	// CallBack(result);
+
+   			},
+   			error: function (error) {
+
+  			 }
+		});
+    },
+
+    error: function(result) {
+        //called when there is an error
+        console.log(result, "error");
+    },
+});
+
+// change "dog" to match value of animal button clicked when that is added to html
+let searchKey = "dog" + " food collar toy bed bowl"
+
+let amazonURL = `https://amazon-product-search.p.rapidapi.com/amazon-search/search.php?search=${searchKey}&region=com&page=1`
+
+$.ajax({
+    url: amazonURL,
+    method: "GET",
+    headers: {
+        "x-rapidapi-host": "amazon-product-search.p.rapidapi.com",
+		"x-rapidapi-key": "21acf3ee9cmsh43ea2bb31469b34p1aac81jsn732637b64531"
+    }
+}).then(function(responseAmazon){
+
+    console.log(amazonURL)
+    console.log(responseAmazon)
+    
+    let amazonItems = responseAmazon.result
+     for (let i = 0; i < amazonItems.length; i++) {
+       
+       let topFive = amazonItems[0] 
+
+        console.log(topFive)
+     }
+    
+
+    
+        
+})
+
+
+// need a way to take user input and search amazon for products
+
 
 </script>
 
