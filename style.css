@@ -1,3 +1,8 @@
 * {
     box-sizing: border-box;
+    color: peru;
+}
+
+.buttons {
+    background-color: wheat;
 }
