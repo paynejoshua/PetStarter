@@ -83,7 +83,7 @@
 				<h4>Popular items to get for this animal</h4>
 			</div>
 			<ul class="w3-ul w3-hoverable w3-white" id="products">
-				
+				<span><a href=""></a></span>
 			</ul>
 		</div>
 		<hr> 
@@ -148,11 +148,11 @@ $.ajax({
 		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' style='width:50px'></img>")
 			productImage.attr("src", amazonItems[i].thumbnail)
 		let productTitle = $("<span>")
-			productTitle.text(amazonItems[i].title)
-		let productURL = $("<span>")
-			productURL.text(amazonItems[i].url)
+		let productURL = $("<a>")
+			productURL.attr("href", amazonItems[i].url).text(amazonItems[i].title)
+			productTitle.append(productURL)
 
-		$("#products").append(productList.append(productImage).append(productTitle).append(productURL))
+		$("#products").append(productList.append(productImage).append(productTitle))
 	}
     
 
