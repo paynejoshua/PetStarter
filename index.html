@@ -114,7 +114,9 @@
 
 <script type="text/JavaScript">
 
-// change "dog" to match value of animal button clicked when that is added to html
+
+
+// These on clicks are set the string inside the searchKey variable which will get called in the amazon ajax
 
 let searchKey = "";
 
@@ -122,6 +124,8 @@ let searchKey = "";
 $("#dogBtn").on("click", function(){
 	searchKey = "dog bed collar bone treats toys food bowl";
 	$("#products").empty();
+	$("#startUp").addClass("hide");
+	$("#grid-container").removeClass("hide");
 	runAmazon();
 })
 
@@ -130,6 +134,8 @@ $("#catBtn").on("click", function(){
 	searchKey = "cat bed collar treats toys bowls";
 	console.log(searchKey)
 	$("#products").empty();
+	$("#startUp").addClass("hide");
+	$("#grid-container").removeClass("hide");
 	runAmazon();
 })
 
@@ -142,8 +148,15 @@ $.ajax({
     headers: {
         "x-rapidapi-host": "amazon-product-search.p.rapidapi.com",
 		"x-rapidapi-key": "21acf3ee9cmsh43ea2bb31469b34p1aac81jsn732637b64531"
+		
     }
 }).then(function(responseAmazon){
+
+
+	let siteArray = responseAmazon.result
+		if(!siteArray.length){
+			runAmazon();
+		} else {
 
     console.log(amazonURL)
     console.log(responseAmazon)
@@ -163,7 +176,8 @@ $.ajax({
 			productTitle.append(productURL)
 
 		$("#products").append(productList.append(productImage).append(productTitle))
-	}   
+	}
+}   
 
 
 })
@@ -171,11 +185,11 @@ $.ajax({
 
 
 
-// need a way to take user input and search amazon for products
 
-//Petfinder
 
-//test
+// Petfinder
+
+
 
 // let clickedDog = document.getElementByID("")
 // object.addEventListener("click", myScript);
@@ -236,7 +250,7 @@ $.ajax({
 // });
 
 
-// need a way to take user input and search amazon for products
+
 
 
 </script>
