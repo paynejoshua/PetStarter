@@ -3,6 +3,10 @@
     color: peru;
 }
 
+body {
+    background-image: radial-gradient(circle, lightgreen, yellow, rgb(19, 207, 207));
+}
+
 h1 {
     font-size: 5rem;
 }
@@ -21,7 +25,22 @@ h1 {
 
 #startPics {
     max-height: 400px;
+    position: relative;
     height: 100%;
     width: 50%;
     padding: 0.5rem;
+    object-fit: contain;
+    animation-name: move;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move {
+    0%   {left:0px; top:-50px;}
+    25%  {left:150px; top:-50px;}
+    50%  {left:150px; top:100px;}
+    75%  {left:0px; top:100px;}
+    100% {left:0px; top:-50px;}
 }
