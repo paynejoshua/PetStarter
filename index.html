@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pet Starter</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-	<link rel="stylesheet" href="style.css">
+    <title>Pet Starter</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body class="w3-light-grey">
 	<!-- w3-content defines a container for fixed size centered content, 
@@ -27,10 +25,10 @@
 	</div>
 	
 	<!-- Grid -->
-	<div class="w3-row" id="hide">
+	<div class="w3-row" id="grid-container" class="hide" >
 	
 	<!-- Animal entries -->
-	<div class="w3-col l8 s12">
+	<div class="w3-col l8 s12" id="cards">
 		<!-- Animal entry -->
 		<div class="w3-card-4 w3-margin">
 			<!-- picture of animal -->
@@ -45,7 +43,7 @@
 				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
 				<div class="w3-row">
 					<div class="w3-col m8 s12">
-						<p><button class="w3-button w3-padding-large w3-border"><b>READ MORE »</b></button></p>
+						<a href="" class="w3-button w3-padding-large w3-border">Read More >></a>
 					</div>
 				</div>
 			</div>
@@ -89,28 +87,8 @@
 			<div class="w3-container w3-padding">
 				<h4>Popular items to get for this animal</h4>
 			</div>
-			<ul class="w3-ul w3-hoverable w3-white">
-				<li class="w3-padding-16">
-					<!-- Picture of supplies in each image tag -->
-					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-					<span class="w3-large">Lorem</span><br>
-					<span>Sed mattis nunc</span>
-				</li>
-				<li class="w3-padding-16">
-					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-					<span class="w3-large">Ipsum</span><br>
-					<span>Praes tinci sed</span>
-				</li> 
-				<li class="w3-padding-16">
-					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-					<span class="w3-large">Dorum</span><br>
-					<span>Ultricies congue</span>
-				</li>   
-				<li class="w3-padding-16 w3-hide-medium w3-hide-small">
-					<img src="" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-					<span class="w3-large">Mingsum</span><br>
-					<span>Lorem ipsum dipsum</span>
-				</li>  
+			<ul class="w3-ul w3-hoverable w3-white" id="products">
+
 			</ul>
 		</div>
 		<hr> 
@@ -134,92 +112,28 @@
 
 <script type="text/JavaScript">
 
-//Amazon
-
-var amazonURL = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://amazon-product-search.p.rapidapi.com/amazon-search/product.php?asin=B081Q5RCMV&region=com",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "amazon-product-search.p.rapidapi.com",
-		"x-rapidapi-key": "21acf3ee9cmsh43ea2bb31469b34p1aac81jsn732637b64531"
-	}
-}
-
-$.ajax(amazonURL).done(function (response) {
-	console.log(response);
-});
-
-// need a way to take user input and search amazon for products
-
-//Petfinder
-
-//test
-
-let clickedDog = document.getElementByID("")
-object.addEventListener("click", myScript);
-
-let userAnimal = {
-    species: "dog"
-}
-
-var body = {
-    grant_type: 'client_credentials',
-    client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
-    client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
-};
-
-$.ajax({
-    url: 'https://api.petfinder.com/v2/oauth2/token',
-    type: 'POST',
-    dataType: 'json',
-    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-    /* data: JSON.stringify(body), /* wrong */
-    data: body, /* right */
-    complete: function(result) {
-        //called when complete
-        console.log(result, "complete");
-    },
-
-    success: function(result) {
-        //called when successful
-		//console.log(result, "success");
-		let accessToken = "Bearer " + result.access_token;
-		//console.log(accessToken);
-		$.ajax({
-   			url: 'https://api.petfinder.com/v2/animals',
-   			type: 'GET',
-   			contentType: 'application/json',
-   			headers: {
-	  			Authorization: accessToken
-   			},
-   			success: function (result) {
-	   			console.log(result);
-                console.log(result.animals[0].name);
-                console.log(result.animals[0].type);
-                console.log(result.animals[0].breeds.primary);
-                console.log(result.animals[0].age);
-			   	// CallBack(result);
-
-   			},
-   			error: function (error) {
-
-  			 }
-		});
-    },
-
-    error: function(result) {
-        //called when there is an error
-        console.log(result, "error");
-    },
-});
-
 // change "dog" to match value of animal button clicked when that is added to html
-let searchKey = "dog" + " food collar toy bed bowl"
 
+let searchKey = "";
+
+
+$("#dogBtn").on("click", function(){
+	searchKey = "dog bed collar bone treats toys food bowl";
+	$("#products").empty();
+	runAmazon();
+})
+
+
+$("#catBtn").on("click", function(){
+	searchKey = "cat bed collar treats toys bowls";
+	console.log(searchKey)
+	$("#products").empty();
+	runAmazon();
+})
+
+
+function runAmazon(){
 let amazonURL = `https://amazon-product-search.p.rapidapi.com/amazon-search/search.php?search=${searchKey}&region=com&page=1`
-
 $.ajax({
     url: amazonURL,
     method: "GET",
@@ -232,18 +146,92 @@ $.ajax({
     console.log(amazonURL)
     console.log(responseAmazon)
     
-    let amazonItems = responseAmazon.result
-     for (let i = 0; i < amazonItems.length; i++) {
-       
-       let topFive = amazonItems[0] 
+    let amazonItems = responseAmazon.result.slice(0, 5)
 
-        console.log(topFive)
-     }
-    
+	
+	console.log(amazonItems)
 
-    
-        
+	for (let i = 0; i < amazonItems.length; i++) {
+		let productList = $("<li class='w3-padding-16'></li>")
+		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' style='width:50px'></img>")
+			productImage.attr("src", amazonItems[i].thumbnail)
+		let productTitle = $("<span>")
+		let productURL = $("<a>")
+			productURL.attr("href", amazonItems[i].url).text(amazonItems[i].title)
+			productTitle.append(productURL)
+
+		$("#products").append(productList.append(productImage).append(productTitle))
+	}   
+
+
 })
+}
+
+
+
+// need a way to take user input and search amazon for products
+
+//Petfinder
+
+//test
+
+// let clickedDog = document.getElementByID("")
+// object.addEventListener("click", myScript);
+
+// let userAnimal = {
+//     species: "dog"
+// }
+
+// var body = {
+//     grant_type: 'client_credentials',
+//     client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
+//     client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
+// };
+
+// $.ajax({
+//     url: 'https://api.petfinder.com/v2/oauth2/token',
+//     type: 'POST',
+//     dataType: 'json',
+//     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+//     /* data: JSON.stringify(body), /* wrong */
+//     data: body, /* right */
+//     complete: function(result) {
+//         //called when complete
+//         console.log(result, "complete");
+//     },
+
+//     success: function(result) {
+//         //called when successful
+// 		//console.log(result, "success");
+// 		let accessToken = "Bearer " + result.access_token;
+// 		//console.log(accessToken);
+// 		$.ajax({
+//    			url: 'https://api.petfinder.com/v2/animals',
+//    			type: 'GET',
+//    			contentType: 'application/json',
+//    			headers: {
+// 	  			Authorization: accessToken
+//    			},
+//    			success: function (result) {
+// 	   			console.log(result);
+//                 console.log(result.animals[0].name);
+//                 console.log(result.animals[0].type);
+//                 console.log(result.animals[0].breeds.primary);
+//                 console.log(result.animals[0].age);
+// 			   	// CallBack(result);
+
+//    			},
+//    			error: function (error) {
+
+//   			 }
+// 		});
+//     },
+
+//     error: function(result) {
+//         //called when there is an error
+//         console.log(result, "error");
+//     },
+// });
 
 
 // need a way to take user input and search amazon for products
