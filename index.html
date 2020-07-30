@@ -189,65 +189,81 @@ $.ajax({
 
 // Petfinder
 
+// need a way to take user input and search amazon for products
 
+//Petfinder
+animalSpecies = "";
 
-// let clickedDog = document.getElementByID("")
-// object.addEventListener("click", myScript);
+$("#catBtn").on("click", function(){
+	animalSpecies = "cat";
+	//clear or reset cards
+	runPetfinder()
+})
+$("#dogBtn").on("click", function(){
+	animalSpecies = "dog";
+	//clear or reset cards
+	runPetfinder()
+})
 
-// let userAnimal = {
-//     species: "dog"
-// }
+function runPetfinder(){
 
-// var body = {
-//     grant_type: 'client_credentials',
-//     client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
-//     client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
-// };
+var body = {
+    grant_type: 'client_credentials',
+    client_id: 'zbEUxHcnMY4dXlpfCC8MmEwOaISfe7ztPzGSYAdf2W9kd0Iw8e',
+    client_secret: '7U2Kxlb0VU9aq2azfHvOlNlMInWbbLbvpDGDlV3a'
+};
 
-// $.ajax({
-//     url: 'https://api.petfinder.com/v2/oauth2/token',
-//     type: 'POST',
-//     dataType: 'json',
-//     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-//     /* data: JSON.stringify(body), /* wrong */
-//     data: body, /* right */
-//     complete: function(result) {
-//         //called when complete
-//         console.log(result, "complete");
-//     },
+$.ajax({
+    url: 'https://api.petfinder.com/v2/oauth2/token',
+    type: 'POST',
+    dataType: 'json',
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    /* data: JSON.stringify(body), /* wrong */
+    data: body, /* right */
+    complete: function(result) {
+        //called when complete
+        console.log(result, "complete");
+    },
 
-//     success: function(result) {
-//         //called when successful
-// 		//console.log(result, "success");
-// 		let accessToken = "Bearer " + result.access_token;
-// 		//console.log(accessToken);
-// 		$.ajax({
-//    			url: 'https://api.petfinder.com/v2/animals',
-//    			type: 'GET',
-//    			contentType: 'application/json',
-//    			headers: {
-// 	  			Authorization: accessToken
-//    			},
-//    			success: function (result) {
-// 	   			console.log(result);
-//                 console.log(result.animals[0].name);
-//                 console.log(result.animals[0].type);
-//                 console.log(result.animals[0].breeds.primary);
-//                 console.log(result.animals[0].age);
-// 			   	// CallBack(result);
+    success: function(result) {
+        //called when successful
+		//console.log(result, "success");
+		let accessToken = "Bearer " + result.access_token;
+		//console.log(accessToken);
+		$.ajax({
+   			url: 'https://api.petfinder.com/v2/animals?type=' + animalSpecies + '&page=1',
+   			type: 'GET',
+   			contentType: 'application/json',
+   			headers: {
+	  			Authorization: accessToken
+   			},
+   			success: function (result) {
+	   			console.log(result);
+                 console.log(result.animals[0].name);
+                 console.log(result.animals[0].breeds.primary);
+				 console.log(result.animals[0].age);
+				 
+				
+				let animalImage = $("<img src='' alt='animal' class=w3-card-4 w3-margin' style='width:100%'></img>")
+				animalImage.attr("src", result.animals[0].primary_photo_cropped.full);
+				$("#cards").append(animalImage);
+				//let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' style='width:50px'></img>")
+				// CallBack(result);
+				//append to div etc. goes here
 
-//    			},
-//    			error: function (error) {
+   			},
+   			error: function (error) {
 
-//   			 }
-// 		});
-//     },
+  			 }
+		});
+    },
 
-//     error: function(result) {
-//         //called when there is an error
-//         console.log(result, "error");
-//     },
-// });
+    error: function(result) {
+        //called when there is an error
+        console.log(result, "error");
+    },
+});
+}
 
 
 
