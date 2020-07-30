@@ -3,10 +3,26 @@
     color: peru;
 }
 
+h1 {
+    font-size: 5rem;
+}
+
+.qPet {
+    font-size: 1.5rem;
+}
+
 .buttons {
     background-color: wheat;
 }
 
 #hide {
-    visibility: hidden;
+    display: none;
+}
+
+#startPics {
+    max-height: 400px;
+    height: 100%;
+    width: 50%;
+    padding: 0.5rem;
+
 }
