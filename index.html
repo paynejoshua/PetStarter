@@ -20,10 +20,10 @@
 	
 	
 	<!-- Grid -->
-	<div class="w3-row" id="hide">
+	<div class="w3-row" id="grid-container" class="hide" >
 	
 	<!-- Animal entries -->
-	<div class="w3-col l8 s12">
+	<div class="w3-col l8 s12" id="cards">
 		<!-- Animal entry -->
 		<div class="w3-card-4 w3-margin">
 			<!-- picture of animal -->
@@ -38,7 +38,7 @@
 				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
 				<div class="w3-row">
 					<div class="w3-col m8 s12">
-						<p><button class="w3-button w3-padding-large w3-border"><b>READ MORE »</b></button></p>
+						<a href="" class="w3-button w3-padding-large w3-border">Read More >></a>
 					</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 				<h4>Popular items to get for this animal</h4>
 			</div>
 			<ul class="w3-ul w3-hoverable w3-white" id="products">
-				<span><a href=""></a></span>
+
 			</ul>
 		</div>
 		<hr> 
@@ -108,24 +108,27 @@
 <script type="text/JavaScript">
 
 // change "dog" to match value of animal button clicked when that is added to html
-let searchKey = "dog bed collar treats";
 
-console.log(searchKey)
-
-// $("#dogBtn", "#catBtn").click(function(){
-//     if (this.id == "#dogBtn".val()) {
-//         searchKey = "dog collar leash bed bowl toy food treats"
-//     } else if (this.id == "#catBtn".val()){
-//         searchKey = "cat collar leash bed bowl toy food treats"
-//     }
-// })
-
-// wills conditional code for testing:
+let searchKey = "";
 
 
+$("#dogBtn").on("click", function(){
+	searchKey = "dog bed collar bone treats toys food bowl";
+	$("#products").empty();
+	runAmazon();
+})
+
+
+$("#catBtn").on("click", function(){
+	searchKey = "cat bed collar treats toys bowls";
+	console.log(searchKey)
+	$("#products").empty();
+	runAmazon();
+})
+
+
+function runAmazon(){
 let amazonURL = `https://amazon-product-search.p.rapidapi.com/amazon-search/search.php?search=${searchKey}&region=com&page=1`
-
-
 $.ajax({
     url: amazonURL,
     method: "GET",
@@ -153,12 +156,11 @@ $.ajax({
 			productTitle.append(productURL)
 
 		$("#products").append(productList.append(productImage).append(productTitle))
-	}
-    
+	}   
 
-    
-        
+
 })
+}
 
 
 
