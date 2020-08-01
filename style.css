@@ -19,6 +19,11 @@ h1 {
     background-color: wheat;
 }
 
+#startUp{
+    padding: 50px;
+    border: 50px;
+}
+
 .hide {
     display: none;
 }
@@ -37,13 +42,23 @@ h1 {
     animation-direction: alternate;
 }
 
+hr {
+    visibility: hidden;
+}
 
+
+
+#productImg{
+    max-height:inherit; 
+    max-width: 100px;
+    object-fit:contain;
+}
 
 @keyframes move {
     0%   {left:0px; top:-50px;}
-    25%  {left:150px; top:-50px;}
-    50%  {left:150px; top:100px;}
-    75%  {left:0px; top:100px;}
+    25%  {left:100px; top:-50px;}
+    50%  {left:100px; top:75px;}
+    75%  {left:0px; top:75px;}
     100% {left:0px; top:-50px;}
 }
 

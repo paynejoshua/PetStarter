@@ -79,7 +79,7 @@
 	<div class="w3-col l4">
 		<!-- About breed -->
 		<div class="w3-card w3-margin w3-margin-top">
-			<div class="w3-container w3-white">
+			<div class="w3-container">
 				<h4><b>Breed Name</b></h4>
 				<p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
 			</div>
@@ -100,7 +100,7 @@
 				</h4>
 				
 			</div>
-			<ul class="w3-ul w3-hoverable w3-white" id="products">
+			<ul class="w3-ul w3-hoverable" id="products">
 
 			</ul>
 			
@@ -183,7 +183,9 @@ $.ajax({
 
 	for (let i = 0; i < amazonItems.length; i++) {
 		let productList = $("<li class='w3-padding-16'></li>")
-		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right productImg'>")
+
+		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' id='productImg'></img>")
+
 			productImage.attr("src", amazonItems[i].thumbnail)
 		let productTitle = $("<span>")
 		let productURL = $("<a>")
