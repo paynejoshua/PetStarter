@@ -6,6 +6,7 @@
     <title>Pet Starter</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body class="w3-light-grey">
@@ -87,12 +88,22 @@
 		<!-- Posts -->
 		<div class="w3-card w3-margin">
 			<div class="w3-container w3-padding">
-				<h4 class="itemsList">Popular items to get for this animal<span><button id="refreshBtn" class="buttons refreshBtn">Refresh</button></span></h4>
+				<h4 class="itemsList">Popular items to get for this animal
+					<span>
+						<button id="refreshBtn" class="buttons refreshBtn">
+							<i class="material-icons" style="font-size: 14px">refresh</i>
+						</button>
+					</span>
+					<span>
+						<div class="loader" id="loading"></div>
+					</span>
+				</h4>
+				
 			</div>
 			<ul class="w3-ul w3-hoverable w3-white" id="products">
 
 			</ul>
-			<div class="loader" id="loading"></div>
+			
 		</div>
 		<hr> 
 
@@ -172,7 +183,7 @@ $.ajax({
 
 	for (let i = 0; i < amazonItems.length; i++) {
 		let productList = $("<li class='w3-padding-16'></li>")
-		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' style='max-height: 100% max-width: 100%'></img>")
+		let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right productImg'>")
 			productImage.attr("src", amazonItems[i].thumbnail)
 		let productTitle = $("<span>")
 		let productURL = $("<a>")
