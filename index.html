@@ -159,6 +159,7 @@ $.ajax({
 		let productTitle = $("<span>")
 		let productURL = $("<a>")
 			productURL.attr("href", amazonItems[i].url).text(amazonItems[i].title)
+			productURL.attr("target", "_blank")
 			productTitle.append(productURL)
 
 		$("#products").append(productList.append(productImage).append(productTitle))
