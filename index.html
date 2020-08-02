@@ -38,8 +38,9 @@
 			<div class="w3-container" id="animalCardOne">
 				<h3 id="animalCardOneName"><b>Animal HEADING</b></h3>
 				<h5 id="animalCardOneGender"></h5>
+				<h6 id="animalCardOneBreed"></h6>
 				<div id="animalCardOneDescription"></div>
-				<a href="" id="petLink" class="w3-button w3-padding-large w3-border">Read More >></a>
+				<a href="" target="blank" id="petLink" class="w3-button w3-padding-large w3-border">For more info on this pet, click here » >></a>
 			</div>
 		</div>
 		<hr>
@@ -257,6 +258,8 @@ $.ajax({
 				let animalName = result.animals[animalIndex].name
 				let animalGender = result.animals[animalIndex].gender
 				let animalDescription = result.animals[animalIndex].description
+				let animalBreed = result.animals[animalIndex].breeds.primary
+				let animalLink = result.animals[animalIndex].url
 				
 				
 				let animalImage = $("<img src='' alt='animal' style='padding:20px; max-width:400px; max-height:400px'></img>");
@@ -282,6 +285,8 @@ $.ajax({
 				$("#animalCardOneName").text(animalName);
 				$("#animalCardOneGender").text(animalGender);
 				$("#animalCardOneDescription").text(animalDescription);
+				$("#animalCardOneBreed").text(animalBreed);
+				$("#petLink").attr("href", animalLink);
 
 				animalIndex++;
 		
