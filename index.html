@@ -67,15 +67,7 @@
 	</div>
 	
 	<!-- Introduction about dog or cat -->
-	<div class="w3-col l4">
-		<!-- About breed -->
-		<div class="w3-card w3-margin w3-margin-top">
-			<div class="w3-container">
-				<h4><b>Breed Name</b></h4>
-				<p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
-			</div>
-		</div><hr>
-		
+	<div class="w3-col l4">		
 		<!-- Posts -->
 		<div class="w3-card w3-margin">
 			<div class="w3-container w3-padding">
@@ -267,7 +259,7 @@ $.ajax({
 				let animalDescription = result.animals[animalIndex].description
 				
 				
-				let animalImage = $("<img src='' alt='animal' style='padding:20px'></img>");
+				let animalImage = $("<img src='' alt='animal' style='padding:20px; max-width:400px; max-height:400px'></img>");
 					if(result.animals[animalIndex].primary_photo_cropped == null){
 						stockSpecies = "";
 						if(animalSpecies == "cat"){
