@@ -36,34 +36,19 @@
 		<div class="w3-card-4 w3-margin">
 			<!-- picture of animal -->
 			<div class="w3-container" id="animalCardOne">
+				<div id="animalImage">	</div>
 				<h3 id="animalCardOneName"><b>Animal HEADING</b></h3>
 				<h5 id="animalCardOneGender"></h5>
 				<h6 id="animalCardOneBreed"></h6>
 				<div id="animalCardOneDescription"></div>
-				<a href="" target="blank" id="petLink" class="w3-button w3-padding-large w3-border">For more info on this pet, click here » >></a>
+				<a href="" target="blank" id="petLink" class="buttons w3-button w3-padding-large w3-border">For more info on this pet, click here »</a>		
+				<p class="buttons w3-button w3-padding-large w3-border" id="nextAnimal">Next Pet</p>		
 			</div>
 		</div>
 		<hr>
 	
-		<!-- Animal entry -->
-		<div class="w3-card-4 w3-margin">
-			<!-- picture of animal -->
-			<img src="" alt="animal" style="width:100%">
-			<div class="w3-container">
-				<h3><b>Animal ENTRY</b></h3>
-				<h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
-			</div>
+		<!-- Second Animal entry -->
 		
-			<div class="w3-container">
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-				<div class="w3-row">
-					<div class="w3-col m8 s12">
-						<p><button class="w3-button w3-padding-large w3-border"><b>READ MORE »</b></button></p>
-					</div>
-				</div>
-			</div>
-		</div>
 	<!-- END ANIMAL ENTRIES -->
 	</div>
 	
@@ -205,21 +190,24 @@ let animalIndex = 0;
 $("#catBtn").on("click", function(){
 	animalSpecies = "cat";
 	//clear or reset cards
-	runPetfinder()
 	clearPet()
+	runPetfinder()
 })
 $("#dogBtn").on("click", function(){
 	animalSpecies = "dog";
 	//clear or reset cards
-	runPetfinder()
 	clearPet()
+	runPetfinder()
 })
 
 function clearPet(){
-
+	$("#animalImage").empty();
 }
 
-
+$("#nextAnimal").on("click", function(){
+	runPetfinder();
+	clearPet();
+})
 
 function runPetfinder(){
 
@@ -262,7 +250,7 @@ $.ajax({
 				let animalLink = result.animals[animalIndex].url
 				
 				
-				let animalImage = $("<img src='' alt='animal' style='padding:20px; max-width:400px; max-height:400px'></img>");
+				let animalImage = $("<img src='' alt='animal' style='padding:20px; max-width:400px; max-height:400px' id='animalImage'></img>");
 					if(result.animals[animalIndex].primary_photo_cropped == null){
 						stockSpecies = "";
 						if(animalSpecies == "cat"){
@@ -281,7 +269,7 @@ $.ajax({
 						animalImage.attr("src", result.animals[animalIndex].primary_photo_cropped.medium);
 					}
 					
-				$("#animalCardOne").prepend(animalImage);
+				$("#animalImage").append(animalImage);
 				$("#animalCardOneName").text(animalName);
 				$("#animalCardOneGender").text(animalGender);
 				$("#animalCardOneDescription").text(animalDescription);
