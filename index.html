@@ -35,20 +35,11 @@
 		<!-- Animal entry -->
 		<div class="w3-card-4 w3-margin">
 			<!-- picture of animal -->
-			<img src="" alt="animal" style="width:100%">
-			<div class="w3-container">
-				<h3><b>Animal HEADING</b></h3>
-				<h5>Title description, <span class="w3-opacity">April 7, 2014</span></h5>
-			</div>
-		
-			<div class="w3-container">
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-				tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-				<div class="w3-row">
-					<div class="w3-col m8 s12">
-						<a href="" class="w3-button w3-padding-large w3-border">Read More >></a>
-					</div>
-				</div>
+			<div class="w3-container" id="animalCardOne">
+				<h3 id="animalCardOneName"><b>Animal HEADING</b></h3>
+				<h5 id="animalCardOneGender"></h5>
+				<div id="animalCardOneDescription"></div>
+				<a href="" id="petLink" class="w3-button w3-padding-large w3-border">Read More >></a>
 			</div>
 		</div>
 		<hr>
@@ -216,17 +207,26 @@ $.ajax({
 
 //Petfinder
 animalSpecies = "";
+let animalIndex = 0;
 
 $("#catBtn").on("click", function(){
 	animalSpecies = "cat";
 	//clear or reset cards
 	runPetfinder()
+	clearPet()
 })
 $("#dogBtn").on("click", function(){
 	animalSpecies = "dog";
 	//clear or reset cards
 	runPetfinder()
+	clearPet()
 })
+
+function clearPet(){
+
+}
+
+
 
 function runPetfinder(){
 
@@ -261,19 +261,45 @@ $.ajax({
 	  			Authorization: accessToken
    			},
    			success: function (result) {
-	   			console.log(result);
-                 console.log(result.animals[0].name);
-                 console.log(result.animals[0].breeds.primary);
-				 console.log(result.animals[0].age);
-				 
-				
-				let animalImage = $("<img src='' alt='animal' class=w3-card-4 w3-margin' style='width:100%'></img>")
-				animalImage.attr("src", result.animals[0].primary_photo_cropped.full);
-				$("#cards").append(animalImage);
-				//let productImage = $("<img src='' alt='Image' class='w3-left w3-margin-right' style='width:50px'></img>")
-				// CallBack(result);
-				//append to div etc. goes here
 
+				let animalName = result.animals[animalIndex].name
+				let animalGender = result.animals[animalIndex].gender
+				let animalDescription = result.animals[animalIndex].description
+				
+				
+				let animalImage = $("<img src='' alt='animal' style='padding:20px'></img>");
+					if(result.animals[animalIndex].primary_photo_cropped == null){
+						stockSpecies = "";
+						if(animalSpecies == "cat"){
+							stockSpecies = "stockcat.png";
+						}
+						else{
+							stockSpecies = "stockdog.png"
+						}
+						animalImage.attr({
+							src: stockSpecies, 
+							width: "600",
+							height: "500"
+						});
+					}   
+					else{
+						animalImage.attr("src", result.animals[animalIndex].primary_photo_cropped.medium);
+					}
+					
+				$("#animalCardOne").prepend(animalImage);
+				$("#animalCardOneName").text(animalName);
+				$("#animalCardOneGender").text(animalGender);
+				$("#animalCardOneDescription").text(animalDescription);
+
+				animalIndex++;
+		
+				if(animalIndex == 20){
+					animalIndex = 0;
+				}
+				
+				//let count = animalIndex + 1
+				//animals.slice(animalIndex++, count);
+			
    			},
    			error: function (error) {
 
